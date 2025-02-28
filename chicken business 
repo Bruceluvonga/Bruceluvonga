@@ -1,0 +1,50 @@
+pip install flask
+chicken_business/
+│── app.py
+│── templates/
+│   ├── home.html
+│   ├── about.html
+│   ├── contact.html
+│── static/
+│   ├── styles.css
+from flask import Flask, render_template
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return render_template('home.html')
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
+
+if __name__ == '__main__':
+    app.run(debug=True)
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chicken Business</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Welcome to Our Chicken Business</h1>
+    <p>We provide high-quality poultry products.</p>
+    <a href="/about">About Us</a> | <a href="/contact">Contact</a>
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>About Us</title>
+</head>
+<body>
+    <h1>About Our Chicken Business</h1>
+    <p>We specialize in organic, farm-fresh chickens.</p>
+    <a href="/">Home</a> | <a href="/contact">Contact</a>
+</body>
+</html>
